@@ -14,7 +14,7 @@ The provider runs as a static cache that can refresh on a timer interval.  Shoul
 
 Sample configuration file (from the unit test)
 
-<?xml version="1.0" encoding="utf-8" ?>
+```xml
 <configuration>
   <configSections>
     <section name="keyVaultConfig" type="WhiteStrike.KeyVaultConfiguration.KeyVaultConfigurationSection, WhiteStrike.KeyVaultConfiguration" allowDefinition="Everywhere" allowLocation="true" />
@@ -38,12 +38,15 @@ Sample configuration file (from the unit test)
     <add name="testConnection" providerName="Microsoft.Sql.Server" connectionString="${KV::TestVault::ConnectionString}" />
   </connectionStrings>
 </configuration>
-  
+```
+
   And then the code is altered from "ConfigurationManager.AppSettings[value]" to "KeyVaultConfigurationManager.AppSettings(value)"
   
   Like so.  
-  
+
+```c#
   string hello = KeyVaultConfigurationManager.AppSettings("Test").Result;
   string test2 = KeyVaultConfigurationManager.AppSettings("TestString2").Result;
   string secondString = KeyVaultConfigurationManager.AppSettings("SecondString").Result;
   ConnectionStringSettings settings = KeyVaultConfigurationManager.ConnectionString("testConnection").Result;
+```
