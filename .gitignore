@@ -1,0 +1,15 @@
+/packages/
+!packages/repositories.config
+/KeyVaultConfiguration/bin/Debug
+/.vs/KeyVaultPOC/v16/Server/sqlite3
+/KeyVaultConfiguration/obj/Debug
+/KeyVaultConnector/bin/Debug
+/KeyVaultConnector/obj/Debug
+/KeyVaultPOC/bin
+/KeyVaultPOC/obj/Debug
+/.vs/KeyVaultPOC/v16/.suo
+/WhiteStrike.KeyVaultTests/bin/Debug
+/WhiteStrike.KeyVaultTests/obj/Debug
+/KeyVaultPOC/Scripts
+/.vs/KeyVaultConfigurationProvider/v16/Server/sqlite3
+/.vs/KeyVaultConfigurationProvider/v16/.suo
