@@ -14,6 +14,11 @@ The provider runs as a static cache that can refresh on a timer interval.  Shoul
 
 Sample configuration file (from the unit test)
 
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <section name="keyVaultConfig" type="WhiteStrike.KeyVaultConfiguration.KeyVaultConfigurationSection, WhiteStrike.KeyVaultConfiguration" allowDefinition="Everywhere" allowLocation="true" />
+  </configSections>
   <keyVaultConfig>
     <vaults>
       <vaultConfig name="TestVault" vaultUrl="https://[yourvault].vault.azure.net" authenticationUrl="https://login.microsoftonline.com/[yourtenantidguid]/login" identity="[identityguidforappuser]" credential="[certthumbprint]" credentialType="Certificate" secretPrefix="Test" />
@@ -21,8 +26,7 @@ Sample configuration file (from the unit test)
       <vaultConfig name="StaticValueTestVault" vaultUrl="https://whitestrike.vault.azure.com" authenticationUrl="https://login.microsoftonline.com/orbital/login" identity="f8651091-96c8-4819-af0d-5ac55f1b5666" credential="AD0F54B8CE90F8D1FD3146D299459791AFC99B91" credentialType="Certificate" secretPrefix="Test" />
     </vaults>
   </keyVaultConfig>
-  
-    <appSettings>
+  <appSettings>
     <!-- Pulls from vault named "TestVault" in the configuration above and looks for a value named "TestHello" -->
     <add key="Test" value="${KV::TestVault::Hello}" />
     <!-- Pulls from vault named "TestVault2" in the configuration above and looks for a value named "TestThisString" -->
@@ -33,6 +37,7 @@ Sample configuration file (from the unit test)
   <connectionStrings>
     <add name="testConnection" providerName="Microsoft.Sql.Server" connectionString="${KV::TestVault::ConnectionString}" />
   </connectionStrings>
+</configuration>
   
   And then the code is altered from "ConfigurationManager.AppSettings[value]" to "KeyVaultConfigurationManager.AppSettings(value)"
   
